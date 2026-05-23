@@ -13,8 +13,8 @@
           "category": "Contributed",
           "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/elyssa-1.0.0.zip",
           "archiveFileName": "elyssa-1.0.0.zip",
-          "checksum": "SHA-256:35AA8743FD74B9E40BE415E0D0D0076AF46B3F1D1182A42305FB4A51CCD7642E",
-          "size": "3012",
+          "checksum": "SHA-256:2BD01E7AE3F4160008009885B0A61784C0E6B1FF6F7BBAA00E9650AD49600648",
+          "size": "3136",
           "boards": [
             { "name": "Elyssa Dev Board" }
           ],
