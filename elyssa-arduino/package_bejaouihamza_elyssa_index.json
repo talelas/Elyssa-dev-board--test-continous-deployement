@@ -1,72 +1,33 @@
 {
-  "packages":
-  [
+  "packages": [
     {
-      "name":"bejaouihamza",
-
-      "maintainer":"Bejaoui Hamza",
-
-      "websiteURL":
-      "https://bejaouihamza.github.io/elyssa/",
-
-      "email":
-      "bejaouihamza321@gmail.com",
-
-      "platforms":
-      [
+      "name": "bejaouihamza",
+      "maintainer": "Bejaoui Hamza",
+      "websiteURL": "https://bejaouihamza.github.io/elyssa/",
+      "email": "bejaouihamza321@gmail.com",
+      "platforms": [
         {
-          "name":
-          "Elyssa ESP32 Boards",
-
-          "architecture":
-          "esp32",
-
-          "version":
-          "1.0.0",
-
-          "category":
-          "Contributed",
-
-          "url":
-"https://github.com/BejaouiHamza/elyssa-arduino/releases/download/1.0.0/elyssa-1.0.0.zip",
-
-          "archiveFileName":
-          "elyssa-1.0.0.zip",
-
-          "checksum":
-          "SHA-256:PUT_HASH_HERE",
-
-          "size":
-          "25000",
-
-          "boards":
-          [
-            {
-              "name":
-              "Elyssa Dev Board"
-            }
+          "name": "Elyssa Moovma Board",
+          "architecture": "esp32",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/1.0.0/elyssa-1.0.0.zip",
+          "archiveFileName": "elyssa-1.0.0.zip",
+          "checksum": "SHA-256:B9A9AC594E6BF9A66463BE1792FF38FD58EC20D24FEA0476D68A802FBF68D7E3",
+          "size": "2990",
+          "boards": [
+            { "name": "Elyssa Dev Board" }
           ],
-
-          "toolsDependencies":
-          [
+          "toolsDependencies": [
             {
-              "packager":
-              "esp32",
-
-              "name":
-              "esptool_py",
-
-              "version":
-              "4.9.dev3"
+              "packager": "esp32",
+              "name": "esptool_py",
+              "version": "4.9.dev3"
             }
           ]
         }
       ],
-
-      "tools":
-      [
-
-      ]
+      "tools": []
     }
   ]
 }
