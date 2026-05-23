@@ -1,21 +1,34 @@
 {
-  "packages": [
+  "packages":
+  [
     {
-      "name": "bejaouihamza",
-      "maintainer": "Bejaoui Hamza",
-      "websiteURL": "https://bejaouihamza.github.io/elyssa/",
-      "email": "contact@example.com",
+      "name":"bejaouihamza",
 
-      "platforms": [
+      "maintainer":"Bejaoui Hamza",
+
+      "websiteURL":
+      "https://bejaouihamza.github.io/elyssa/",
+
+      "email":
+      "bejaouihamza321@gmail.com",
+
+      "platforms":
+      [
         {
-          "name": "Elyssa ESP32 Boards",
-          "architecture": "esp32",
-          "version": "1.0.0",
+          "name":
+          "Elyssa ESP32 Boards",
 
-          "category": "Contributed",
+          "architecture":
+          "esp32",
+
+          "version":
+          "1.0.0",
+
+          "category":
+          "Contributed",
 
           "url":
-          "https://github.com/BejaouiHamza/elyssa-arduino/releases/download/1.0.0/elyssa-1.0.0.zip",
+"https://github.com/BejaouiHamza/elyssa-arduino/releases/download/1.0.0/elyssa-1.0.0.zip",
 
           "archiveFileName":
           "elyssa-1.0.0.zip",
@@ -24,27 +37,36 @@
           "SHA-256:PUT_HASH_HERE",
 
           "size":
-          "20000",
+          "25000",
 
           "boards":
           [
             {
-              "name":"Elyssa Dev Board"
+              "name":
+              "Elyssa Dev Board"
             }
           ],
 
           "toolsDependencies":
           [
             {
-              "packager":"esp32",
-              "name":"esptool_py",
-              "version":"4.9.dev3"
+              "packager":
+              "esp32",
+
+              "name":
+              "esptool_py",
+
+              "version":
+              "4.9.dev3"
             }
           ]
         }
       ],
 
-      "tools":[]
+      "tools":
+      [
+
+      ]
     }
   ]
 }
