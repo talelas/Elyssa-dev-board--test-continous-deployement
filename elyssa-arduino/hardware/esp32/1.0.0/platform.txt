@@ -1,1 +1,4 @@
+name=Elyssa Boards
+version=1.0.0
 
+runtime.tools.esptool_py.path={runtime.tools.esptool_py.path}
