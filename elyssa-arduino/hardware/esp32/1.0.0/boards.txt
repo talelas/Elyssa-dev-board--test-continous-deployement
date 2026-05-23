@@ -1,1 +1,44 @@
+elyssa.name=Elyssa Dev Board
 
+elyssa.upload.tool=esptool_py
+elyssa.upload.maximum_size=8388608
+elyssa.upload.maximum_data_size=327680
+
+elyssa.upload.speed=921600
+
+elyssa.build.mcu=esp32s3
+elyssa.build.f_cpu=240000000L
+
+elyssa.build.flash_mode=qio
+elyssa.build.flash_freq=80m
+
+elyssa.build.flash_size=8MB
+
+elyssa.build.boot=qio
+
+elyssa.build.core=esp32
+elyssa.build.variant=elyssa
+
+elyssa.build.board=ELYSSA_DEV
+
+elyssa.build.arduino.memory_type=qio_opi
+
+elyssa.build.psram=disabled
+
+elyssa.serial.disableDTR=false
+elyssa.serial.disableRTS=false
+
+elyssa.menu.PartitionScheme.default=Default 8MB
+elyssa.menu.PartitionScheme.default.build.partitions=default_8MB
+
+elyssa.menu.CDCOnBoot.default=Enabled
+elyssa.menu.CDCOnBoot.default.cdc_on_boot=1
+
+elyssa.menu.UploadSpeed.921600=921600
+elyssa.menu.UploadSpeed.921600.upload.speed=921600
+
+elyssa.menu.CPUFreq.240=240MHz
+elyssa.menu.CPUFreq.240.build.f_cpu=240000000L
+
+elyssa.menu.FlashFreq.80=80MHz
+elyssa.menu.FlashFreq.80.build.flash_freq=80m
