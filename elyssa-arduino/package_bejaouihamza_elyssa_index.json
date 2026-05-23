@@ -7,11 +7,11 @@
       "email": "bejaouihamza321@gmail.com",
       "platforms": [
         {
-          "name": "Elyssa Moovma Board",
+          "name": "Elyssa Moovma",
           "architecture": "esp32",
           "version": "1.0.0",
           "category": "Contributed",
-          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/1.0.0/elyssa-1.0.0.zip",
+          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/elyssa-1.0.0.zip",
           "archiveFileName": "elyssa-1.0.0.zip",
           "checksum": "SHA-256:B9A9AC594E6BF9A66463BE1792FF38FD58EC20D24FEA0476D68A802FBF68D7E3",
           "size": "2990",
