@@ -19,12 +19,32 @@
             { "name": "Elyssa Dev Board" }
           ],
           "toolsDependencies": [
-            {
-              "packager": "esp32",
-              "name": "esptool_py",
-              "version": "4.9.dev3"
-            }
-          ]
+  {
+    "packager": "esp32",
+    "name": "esptool_py",
+    "version": "4.9.dev3"
+  },
+  {
+    "packager": "esp32",
+    "name": "esp32-arduino-libs",
+    "version": "idf-release_v5.5-6f8144ea-v1"
+  },
+  {
+    "packager": "esp32",
+    "name": "xtensa-esp-elf-gdb",
+    "version": "14.2_20240403"
+  },
+  {
+    "packager": "esp32",
+    "name": "riscv32-esp-elf-gdb",
+    "version": "14.2_20240403"
+  },
+  {
+    "packager": "esp32",
+    "name": "esp-x32",
+    "version": "2501"
+  }
+]
         }
       ],
       "tools": []
