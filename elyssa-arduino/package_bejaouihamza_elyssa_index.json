@@ -1,40 +1,41 @@
 {
   "packages": [
     {
-      "name": "bejaouihamza",
-      "maintainer": "Bejaoui Hamza",
-      "websiteURL": "https://bejaouihamza.github.io/elyssa/",
-      "email": "bejaouihamza321@gmail.com",
+      "name": "moovma",
+      "maintainer": "Moovma",
+      "websiteURL": "https://github.com/bejaouihamza/Elyssa-dev-board",
+      "email": "",
+      "help": {
+        "online": "https://github.com/bejaouihamza/Elyssa-dev-board/issues"
+      },
       "platforms": [
         {
-          "name": "Elyssa Moovma",
-          "architecture": "esp32",
-          "version": "1.0.1",
+          "name": "Moovma Elyssa Boards",
+          "architecture": "elyssa",
+          "version": "1.0.0",
           "category": "Contributed",
-          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.1/elyssa-1.0.1.zip",
-          "archiveFileName": "elyssa-1.0.1.zip",
-          "checksum": "SHA-256:7ef02c7814f5d3ccd49aea9acc3ddd97e3814ac7f00a23f5b5f7732ee855e041",
-          "size": "1838",
+          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/1.0.0/elyssa-1.0.0.zip",
+          "archiveFileName": "elyssa-1.0.0.zip",
+          "checksum": "SHA-256:cdbe85ef2370c22e061c88bbebd276aaa8090e254a2e38ebad2d0374a40cd4c8",
+          "size": "2088",
           "boards": [
-            {
-              "name": "Elyssa Dev Board"
-            }
+            { "name": "Moovma Elyssa (ESP32-S3)" }
           ],
           "toolsDependencies": [
             {
               "packager": "esp32",
               "name": "esptool_py",
-              "version": "4.9.dev3"
+              "version": "4.8.1"
             },
             {
               "packager": "esp32",
-              "name": "esp32-arduino-libs",
-              "version": "idf-release_v5.5-6f8144ea-v1"
+              "name": "xtensa-esp-elf-gcc",
+              "version": "esp-13.2.0_20240530"
             },
             {
               "packager": "esp32",
-              "name": "esp-x32",
-              "version": "2501"
+              "name": "xtensa-esp32s3-elf-gcc",
+              "version": "esp-13.2.0_20240530"
             }
           ]
         }
