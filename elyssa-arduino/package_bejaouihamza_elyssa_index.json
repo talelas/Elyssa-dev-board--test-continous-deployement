@@ -9,42 +9,34 @@
         {
           "name": "Elyssa Moovma",
           "architecture": "esp32",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "category": "Contributed",
-          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/elyssa-1.0.0.zip",
-          "archiveFileName": "elyssa-1.0.0.zip",
-          "checksum": "SHA-256:9DA5520487A3280F248219ECBB729EBDF8E360E4911F06614F81C0206D986753",
-          "size": "8661",
+          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.1/elyssa-1.0.1.zip",
+          "archiveFileName": "elyssa-1.0.1.zip",
+          "checksum": "SHA-256:7ef02c7814f5d3ccd49aea9acc3ddd97e3814ac7f00a23f5b5f7732ee855e041",
+          "size": "1838",
           "boards": [
-            { "name": "Elyssa Dev Board" }
+            {
+              "name": "Elyssa Dev Board"
+            }
           ],
           "toolsDependencies": [
-  {
-    "packager": "esp32",
-    "name": "esptool_py",
-    "version": "4.9.dev3"
-  },
-  {
-    "packager": "esp32",
-    "name": "esp32-arduino-libs",
-    "version": "idf-release_v5.5-6f8144ea-v1"
-  },
-  {
-    "packager": "esp32",
-    "name": "xtensa-esp-elf-gdb",
-    "version": "14.2_20240403"
-  },
-  {
-    "packager": "esp32",
-    "name": "riscv32-esp-elf-gdb",
-    "version": "14.2_20240403"
-  },
-  {
-    "packager": "esp32",
-    "name": "esp-x32",
-    "version": "2501"
-  }
-]
+            {
+              "packager": "esp32",
+              "name": "esptool_py",
+              "version": "4.9.dev3"
+            },
+            {
+              "packager": "esp32",
+              "name": "esp32-arduino-libs",
+              "version": "idf-release_v5.5-6f8144ea-v1"
+            },
+            {
+              "packager": "esp32",
+              "name": "esp-x32",
+              "version": "2501"
+            }
+          ]
         }
       ],
       "tools": []
