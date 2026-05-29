@@ -2,45 +2,127 @@
   "packages": [
     {
       "name": "moovma",
-      "maintainer": "Moovma",
-      "websiteURL": "https://github.com/bejaouihamza/Elyssa-dev-board",
-      "email": "",
+      "maintainer": "Bejaoui Hamza",
+      "websiteURL": "https://bejaouihamza.github.io/elyssa/",
+      "email": "bejaouihamza321@gmail.com",
       "help": {
         "online": "https://github.com/bejaouihamza/Elyssa-dev-board/issues"
       },
       "platforms": [
         {
-          "name": "Moovma Elyssa Boards",
-          "architecture": "elyssa",
+          "name": "Moovma Elyssa",
+          "architecture": "esp32",
           "version": "1.0.0",
           "category": "Contributed",
-          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/1.0.0/elyssa-1.0.0.zip",
-          "archiveFileName": "elyssa-1.0.0.zip",
-          "checksum": "SHA-256:cdbe85ef2370c22e061c88bbebd276aaa8090e254a2e38ebad2d0374a40cd4c8",
-          "size": "2088",
+          "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/1.0.0.zip",
+          "archiveFileName": "1.0.0.zip",
+          "checksum": "SHA-256:d8b89f3aa71a16a1f2be2f167f79f40c6cdb74fa1afc6d4887a8e541ef478a72",
+          "size": "21273549",
           "boards": [
-            { "name": "Moovma Elyssa (ESP32-S3)" }
+            { "name": "Elyssa" }
           ],
           "toolsDependencies": [
             {
-              "packager": "esp32",
+              "packager": "moovma",
+              "name": "esp-x32",
+              "version": "2601"
+            },
+            {
+              "packager": "moovma",
+              "name": "esp32s3-libs",
+              "version": "3.3.8"
+            },
+            {
+              "packager": "moovma",
               "name": "esptool_py",
-              "version": "4.8.1"
-            },
-            {
-              "packager": "esp32",
-              "name": "xtensa-esp-elf-gcc",
-              "version": "esp-13.2.0_20240530"
-            },
-            {
-              "packager": "esp32",
-              "name": "xtensa-esp32s3-elf-gcc",
-              "version": "esp-13.2.0_20240530"
+              "version": "5.2.0"
             }
           ]
         }
       ],
-      "tools": []
+      "tools": [
+        {
+          "name": "esp32s3-libs",
+          "version": "3.3.8",
+          "systems": [
+            {
+              "host": "x86_64-mingw32",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esp32s3-libs-3.3.8.zip",
+              "archiveFileName": "esp32s3-libs-3.3.8.zip",
+              "checksum": "SHA-256:1d5d7584cca1ff42992ad41bb496561a0fddf5b66f26a1b4e216792b0e074228",
+              "size": "65173852"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esp32s3-libs-3.38.zip",
+              "archiveFileName": "esp32s3-libs-3.38.zip",
+              "checksum": "SHA-256:1d5d7584cca1ff42992ad41bb496561a0fddf5b66f26a1b4e216792b0e074228",
+              "size": "65173852"
+            },
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esp32s3-libs-3.38.zip",
+              "archiveFileName": "esp32s3-libs-3.38.zip",
+              "checksum": "SHA-256:1d5d7584cca1ff42992ad41bb496561a0fddf5b66f26a1b4e216792b0e074228",
+              "size": "65173852"
+            }
+          ]
+        },
+        {
+          "name": "esptool_py",
+          "version": "5.2.0",
+          "systems": [
+            {
+              "host": "x86_64-mingw32",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esptool_py-5.2.0.zip",
+              "archiveFileName": "esptool_py-5.2.0.zip",
+              "checksum": "SHA-256:eb822394cc8f385fc73f62ea5ed7053a2e929400d8f6ae1340014dccaa97503f",
+              "size": "58330325"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esptool_py-5.2.0.zip",
+              "archiveFileName": "esptool_py-5.2.0.zip",
+              "checksum": "SHA-256:eb822394cc8f385fc73f62ea5ed7053a2e929400d8f6ae1340014dccaa97503f",
+              "size": "58330325"
+            },
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esptool_py-5.2.0.zip",
+              "archiveFileName": "esptool_py-5.2.0.zip",
+              "checksum": "SHA-256:eb822394cc8f385fc73f62ea5ed7053a2e929400d8f6ae1340014dccaa97503f",
+              "size": "58330325"
+            }
+          ]
+        },
+        {
+          "name": "esp-x32",
+          "version": "2601",
+          "systems": [
+            {
+              "host": "x86_64-mingw32",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esp-x32-2601.zip",
+              "archiveFileName": "esp-x32-2601.zip",
+              "checksum": "SHA-256:582d310001e152e47141b5eb4d655dcdeeffdd6a5fec1cef21148bc6548c449b",
+              "size": "408472554"
+            },
+            {
+              "host": "x86_64-apple-darwin",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esp-x32-2601.zip",
+              "archiveFileName": "esp-x32-2601.zip",
+              "checksum": "SHA-256:582d310001e152e47141b5eb4d655dcdeeffdd6a5fec1cef21148bc6548c449b",
+              "size": "408472554"
+            },
+            {
+              "host": "x86_64-pc-linux-gnu",
+              "url": "https://github.com/bejaouihamza/Elyssa-dev-board/releases/download/v1.0.0/esp-x32-2601.zip",
+              "archiveFileName": "esp-x32-2601.zip",
+              "checksum": "SHA-256:582d310001e152e47141b5eb4d655dcdeeffdd6a5fec1cef21148bc6548c449b",
+              "size": "408472554"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
