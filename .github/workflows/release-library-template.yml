@@ -1,0 +1,67 @@
+name: Release ElyssaIMU library
+# Copy-paste this once PER LIBRARY (release-library-imu.yml,
+# release-library-power.yml, ...), changing only the `paths:` filter
+# and the --properties path below. Each library gets its own trigger,
+# its own tag namespace, its own update channel in Library Manager —
+# completely independent of the platform release AND of every other
+# library. This is NOT the same mechanism as release.yml — no zip to
+# build, no checksum, no index.json. See README's "Library Manager vs
+# Boards Manager" section for why.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "libraries/ElyssaIMU/**"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bump library.properties version
+        id: bump
+        run: |
+          python3 scripts/bump_library_properties.py \
+            --properties libraries/ElyssaIMU/library.properties \
+            --bump patch
+
+      - name: Commit the version bump
+        run: |
+          git config user.name "elyssa-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add libraries/ElyssaIMU/library.properties
+          git commit -m "ElyssaIMU v${{ steps.bump.outputs.new_version }}"
+          git push
+
+      - name: Tag the release
+        run: |
+          git tag ${{ steps.bump.outputs.tag }}
+          git push origin ${{ steps.bump.outputs.tag }}
+
+# Arduino's own indexer (polls roughly hourly) picks up the new tag,
+# reads the version from library.properties, and Library Manager shows
+# "update available" to anyone with ElyssaIMU installed — only
+# ElyssaIMU, nothing else.
+#
+# One-time setup required BEFORE this does anything useful: submit the
+# repository URL to https://github.com/arduino/library-registry via
+# PR. Until that PR is merged, tags exist on GitHub but Library
+# Manager has never heard of them.
+#
+# UNVERIFIED: whether the official registry indexer will correctly
+# find library.properties inside a subfolder of a monorepo (as opposed
+# to at repo root) isn't clearly documented anywhere I could confirm.
+# The safe, clearly-documented pattern is one GitHub repo per library
+# (what Adafruit/SparkFun/etc. do). If you want to keep everything in
+# this one repo instead, test it end-to-end with a throwaway library
+# and arduino-lint before relying on it for real users.

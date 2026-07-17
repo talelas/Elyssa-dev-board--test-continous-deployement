@@ -1,0 +1,9 @@
+.vscode/
+.vs/
+*.exe
+*.o
+*.elf
+dist/
+/tmp/
+__pycache__/
+*.pyc

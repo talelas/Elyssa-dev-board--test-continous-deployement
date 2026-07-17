@@ -1,0 +1,88 @@
+name: Release Elyssa board package
+
+# Fires only when board source actually changes (not README/docs edits,
+# not tool changes). This scoping also prevents an infinite loop: the
+# commit this workflow makes only touches the index JSON on the
+# gh-pages branch, which this workflow doesn't listen to.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "elyssa-arduino/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: elyssa-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Zip ONLY the platform files (boards.txt/cores/variants/libraries)
+        # Deliberately excludes any toolchain — those live in separate
+        # releases tagged tools-<name>-<version> via release-toolchain.yml.
+        run: |
+          mkdir -p dist
+          (cd elyssa-arduino && zip -r ../dist/elyssa-arduino.zip . -x "*.git*")
+
+      - name: Bump platform version + update index (tools untouched)
+        id: bump
+        run: |
+          python3 scripts/bump_package_index.py \
+            --index package_bejaouihamza_elyssa_index.json \
+            --zip dist/elyssa-arduino.zip \
+            --repo ${{ github.repository }} \
+            --bump patch
+
+      - name: Rename zip to the versioned filename the index now points to
+        run: mv dist/elyssa-arduino.zip "dist/${{ steps.bump.outputs.new_version }}.zip"
+
+      - name: Create GitHub release with the new platform zip
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump.outputs.tag }}
+          name: Elyssa board v${{ steps.bump.outputs.new_version }}
+          files: dist/${{ steps.bump.outputs.new_version }}.zip
+          generate_release_notes: true
+
+      - name: Publish the updated index to gh-pages (not main)
+        # Keeps main protected/PR-only. GitHub Pages should be configured
+        # to serve from the gh-pages branch, not main, so this bot commit
+        # never has to bypass your branch protection rules.
+        run: |
+          git config user.name "elyssa-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin gh-pages || true
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+            git worktree add /tmp/pages gh-pages
+          else
+            git worktree add -B gh-pages /tmp/pages
+            rm -rf /tmp/pages/*
+          fi
+          cp package_bejaouihamza_elyssa_index.json /tmp/pages/package_bejaouihamza_elyssa_index.json
+          cd /tmp/pages
+          git add package_bejaouihamza_elyssa_index.json
+          git commit -m "Release v${{ steps.bump.outputs.new_version }}" || echo "nothing to commit"
+          git push origin gh-pages
+
+# NOTE: I haven't been able to run this against your live repo, so treat
+# the worktree bootstrap step as a strong starting point, not gospel —
+# test it on a throwaway branch before trusting it against real users'
+# installs. If you'd rather keep serving Pages from main (matches your
+# current setup in the screenshot), skip this last step, commit the
+# index straight back to main instead, and add the elyssa-bot identity
+# (or a PAT) to your branch protection's bypass list — Option A vs B,
+# your call.

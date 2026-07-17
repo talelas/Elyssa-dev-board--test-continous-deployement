@@ -1,0 +1,43 @@
+name: Validate Elyssa board changes
+
+# Runs on every PR into main that touches the board source.
+# Make this a required status check in branch protection so a PR
+# can't merge unless it compiles AND has an approving review.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "elyssa-arduino/**"
+
+jobs:
+  compile-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install arduino-cli
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Use this PR's board files as a local core (no download needed)
+        run: |
+          mkdir -p ~/Arduino/hardware/moovma
+          cp -r elyssa-arduino ~/Arduino/hardware/moovma/esp32
+
+      - name: Install tool dependencies referenced by the platform
+        run: |
+          arduino-cli config init
+          arduino-cli core update-index
+          # This installs esptool_py / esp-x32 / esp32s3-libs at whatever
+          # versions boards.txt/platform.txt in this PR declares. If those
+          # versions are unchanged from what's already public, this step
+          # is cheap because arduino-cli caches by version too.
+          arduino-cli core install moovma:esp32 || true
+
+      - name: Compile a smoke-test sketch against the board
+        run: |
+          arduino-cli compile --fqbn moovma:esp32:elyssa examples/Blink
+
+# NOTE: adjust the fqbn (moovma:esp32:elyssa) and the example sketch path
+# to match your actual boards.txt board id and repo layout — I couldn't
+# fetch your live repo to confirm the exact identifiers.

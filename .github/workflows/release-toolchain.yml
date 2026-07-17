@@ -1,0 +1,65 @@
+name: Release toolchain (manual, rare)
+
+# Run this by hand only when esp-x32 / esp32s3-libs / esptool_py actually
+# changes. Everyday library/core edits go through release.yml instead and
+# never touch this. Keeping the two lifecycles separate is what stops a
+# one-line function change from costing users a 400MB re-download.
+on:
+  workflow_dispatch:
+    inputs:
+      tool_name:
+        description: "esp-x32 | esp32s3-libs | esptool_py"
+        required: true
+      tool_version:
+        description: "New tool version string"
+        required: true
+      source_dir:
+        description: "Path to the built tool folder to zip and publish"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release-tool:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zip the toolchain
+        run: |
+          mkdir -p dist
+          zip -r "dist/${{ inputs.tool_name }}-${{ inputs.tool_version }}.zip" "${{ inputs.source_dir }}"
+
+      - name: Publish as its own release (independent tag, independent history)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: tools-${{ inputs.tool_name }}-${{ inputs.tool_version }}
+          files: dist/${{ inputs.tool_name }}-${{ inputs.tool_version }}.zip
+          generate_release_notes: true
+
+      - name: Update just this tool's entry in the index
+        run: |
+          python3 scripts/bump_tool_entry.py \
+            --index package_bejaouihamza_elyssa_index.json \
+            --tool "${{ inputs.tool_name }}" \
+            --version "${{ inputs.tool_version }}" \
+            --zip "dist/${{ inputs.tool_name }}-${{ inputs.tool_version }}.zip" \
+            --repo ${{ github.repository }}
+
+      - name: Publish updated index to gh-pages
+        run: |
+          git config user.name "elyssa-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin gh-pages || true
+          git worktree add /tmp/pages gh-pages
+          cp package_bejaouihamza_elyssa_index.json /tmp/pages/package_bejaouihamza_elyssa_index.json
+          cd /tmp/pages
+          git add package_bejaouihamza_elyssa_index.json
+          git commit -m "Update ${{ inputs.tool_name }} to ${{ inputs.tool_version }}"
+          git push origin gh-pages
+
+# NOTE: this does NOT bump any platform's toolsDependencies, so existing
+# users stay on the old (working) tool version until you deliberately
+# decide to force the upgrade by bumping toolsDependencies yourself in a
+# follow-up platform release.
